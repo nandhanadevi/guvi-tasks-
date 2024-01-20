@@ -1,0 +1,193 @@
+"BASH"
+
+npx create-react-app react-router-app
+cd react-router-app
+
+
+"BASH"
+
+npm install react-router-dom
+
+
+"JSX"
+
+// Home.js
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <h2>Welcome to the Home Page</h2>
+      {/* Add any other content for the Home page */}
+    </div>
+  );
+};
+
+export default Home;
+
+
+"JSX"
+
+// Courses.js
+import React from 'react';
+
+const Courses = () => {
+  return (
+    <div>
+      <h2>Welcome to the Courses Page</h2>
+      {/* Add content for the Courses page */}
+    </div>
+  );
+};
+
+export default Courses;
+
+
+"JSX"
+
+// FullStack.js
+import React from 'react';
+
+const FullStack = () => {
+  return (
+    <div>
+      <h2>Welcome to the Full Stack Development Page</h2>
+      {/* Add content for the Full Stack Development page */}
+    </div>
+  );
+};
+
+export default FullStack;
+
+
+"JSX"
+
+// DataScience.js
+import React from 'react';
+
+const DataScience = () => {
+  return (
+    <div>
+      <h2>Welcome to the Data Science Page</h2>
+      {/* Add content for the Data Science page */}
+    </div>
+  );
+};
+
+export default DataScience;
+
+
+"JSX"
+
+// CyberSecurity.js
+import React from 'react';
+
+const CyberSecurity = () => {
+  return (
+    <div>
+      <h2>Welcome to the Cyber Security Page</h2>
+      {/* Add content for the Cyber Security page */}
+    </div>
+  );
+};
+
+export default CyberSecurity;
+
+
+"JSX"
+
+// Career.js
+import React from 'react';
+
+const Career = () => {
+  return (
+    <div>
+      <h2>Welcome to the Career Page</h2>
+      {/* Add content for the Career page */}
+    </div>
+  );
+};
+
+export default Career;
+
+
+"JSX"
+
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Courses from './components/Courses';
+import FullStack from './components/FullStack';
+import DataScience from './components/DataScience';
+import CyberSecurity from './components/CyberSecurity';
+import Career from './components/Career';
+
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <NavLink to="/" exact activeClassName="active">
+            Home
+          </NavLink>
+          <NavLink to="/courses" activeClassName="active">
+            All
+          </NavLink>
+          <NavLink to="/fullstack" activeClassName="active">
+            Full Stack Development
+          </NavLink>
+          <NavLink to="/datascience" activeClassName="active">
+            Data Science
+          </NavLink>
+          <NavLink to="/cybersecurity" activeClassName="active">
+            Cyber Security
+          </NavLink>
+          <NavLink to="/career" activeClassName="active">
+            Career
+          </NavLink>
+        </nav>
+
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/courses" component={Courses} />
+          <Route path="/fullstack" component={FullStack} />
+          <Route path="/datascience" component={DataScience} />
+          <Route path="/cybersecurity" component={CyberSecurity} />
+          <Route path="/career" component={Career} />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
+
+
+"CSS"
+
+/* App.css */
+nav {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  nav a.active {
+    font-weight: bold;
+  }
+  
+  div {
+    margin: 20px;
+  }
+
+  
+  "BASH"
+
+  npm start
