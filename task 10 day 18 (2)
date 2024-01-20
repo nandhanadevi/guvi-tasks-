@@ -1,0 +1,50 @@
+---
+name: Pull Request
+about: Submit a pull request for this project
+
+---
+
+<!--
+Thank you for taking the time to work on a Pull Request for this project!
+To ensure your PR is dealt with swiftly, please check the following:
+-->
+
+### Checklist
+
+- [ ] My submission is formatted according to the guidelines in the [contributing guide](/CONTRIBUTING.md)
+- [ ] My addition is ordered alphabetically
+- [ ] My submission has a useful description
+- [ ] The description does not have more than 100 characters
+- [ ] The description does not end with punctuation
+- [ ] Each table column is padded with one space on either side
+- [ ] I have searched the repository for any relevant issues or pull requests
+- [ ] Any category I am creating has the minimum requirement of 3 items
+- [ ] All changes have been [squashed][squash-link] into a single commit
+
+[squash-link]: <https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit>
+
+### Changes Made
+
+Describe the changes you made, including a brief overview of the purpose of your changes.
+
+### Additional Context
+
+Add any other context about the pull request here.
+
+### Verification
+
+1. In your HTML file, inside the body tag, add the following script tag: `<script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>`
+2. Select your project task (if available) from the drop-down.
+3. Click on the "Run Test" button to start the test case.
+4. Below the "Run Test" button, you will see the test case result.
+5. Click and open the test case result to see in detail.
+6. Based on the test results, make corrections to your task.
+7. Fix any mistakes or bugs in the code and repeat the above steps.
+
+### Screenshots
+
+If applicable, add screenshots to help showcase your changes.
+
+### Reviewer Information
+
+Mention any specific instructions for the reviewer or any additional information they might need.

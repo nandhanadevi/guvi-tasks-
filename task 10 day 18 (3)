@@ -1,0 +1,79 @@
+"HTML"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Layer Logo Update</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1>API LAYER</h1>
+      <div id="logo-container"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+"CSS"
+
+/* Add your custom styles here */
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  color: #007bff;
+}
+
+#logo-container {
+  margin-top: 20px;
+}
+
+
+"SCRIPT.JS"
+
+document.addEventListener('DOMContentLoaded', function () {
+  fetchData()
+    .then(response => displayLogo(response.data.logo))
+    .catch(error => console.error('Error fetching data:', error));
+});
+
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    fetch('https://api.example.com/logo') // Replace with your API endpoint
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+  });
+}
+
+function displayLogo(logoUrl) {
+  const logoContainer = document.getElementById('logo-container');
+  const logoImage = document.createElement('img');
+  logoImage.src = logoUrl;
+  logoImage.alt = 'API Layer Logo';
+  logoImage.classList.add('img-fluid'); // Bootstrap class for responsive images
+  logoContainer.appendChild(logoImage);
+}
