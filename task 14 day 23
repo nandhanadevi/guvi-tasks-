@@ -1,0 +1,169 @@
+"BASH"
+
+npx create-react-app todo-app
+cd todo-app
+
+
+"BASH"
+
+npm install react-bootstrap bootstrap
+
+
+"JSX"
+
+// TodoCard.js
+import React from 'react';
+import { Card, Button, Dropdown } from 'react-bootstrap';
+
+const TodoCard = ({ todo, onEdit, onDelete, onStatusChange }) => {
+  return (
+    <Card className="mb-3">
+      <Card.Body>
+        <Card.Title>{todo.taskName}</Card.Title>
+        <Card.Text>{todo.description}</Card.Text>
+        <Dropdown>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            Status: {todo.status}
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => onStatusChange(todo.id, 'Completed')}>Completed</Dropdown.Item>
+            <Dropdown.Item onClick={() => onStatusChange(todo.id, 'Not Completed')}>Not Completed</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Button variant="primary" onClick={() => onEdit(todo.id)}>Edit</Button>
+        <Button variant="danger" onClick={() => onDelete(todo.id)}>Delete</Button>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default TodoCard;
+
+
+"JSX"
+
+// TodoList.js
+import React from 'react';
+import TodoCard from './TodoCard';
+
+const TodoList = ({ todos, onEdit, onDelete, onStatusChange }) => {
+  return (
+    <div>
+      {todos.map((todo) => (
+        <TodoCard key={todo.id} todo={todo} onEdit={onEdit} onDelete={onDelete} onStatusChange={onStatusChange} />
+      ))}
+    </div>
+  );
+};
+
+export default TodoList;
+
+
+"JSX"
+
+// TodoForm.js
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+
+const TodoForm = ({ onSubmit }) => {
+  const [taskName, setTaskName] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ taskName, description });
+    setTaskName('');
+    setDescription('');
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formTaskName">
+        <Form.Label>Task Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter task name" value={taskName} onChange={(e) => setTaskName(e.target.value)} required />
+      </Form.Group>
+
+      <Form.Group controlId="formDescription">
+        <Form.Label>Description</Form.Label>
+        <Form.Control as="textarea" rows={3} placeholder="Enter description" value={description} onChange={(e) => setDescription(e.target.value)} required />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Add Todo
+      </Button>
+    </Form>
+  );
+};
+
+export default TodoForm;
+
+
+"JSX"
+
+// Filter.js
+import React from 'react';
+import { ButtonGroup, Button } from 'react-bootstrap';
+
+const Filter = ({ onFilter }) => {
+  return (
+    <ButtonGroup className="mb-3">
+      <Button variant="primary" onClick={() => onFilter('all')}>All</Button>
+      <Button variant="success" onClick={() => onFilter('completed')}>Completed</Button>
+      <Button variant="danger" onClick={() => onFilter('not completed')}>Not Completed</Button>
+    </ButtonGroup>
+  );
+};
+
+export default Filter;
+
+
+"JSX"
+
+// App.js
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
+import Filter from './Filter';
+
+const App = () => {
+  const [todos, setTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    filterTodos();
+  }, [todos, filter]);
+
+  const addTodo = (newTodo) => {
+    setTodos([...todos, { ...newTodo, id: todos.length + 1, status: 'Not Completed' }]);
+  };
+
+  const editTodo = (id, updatedTodo) => {
+    const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTodo } : todo));
+    setTodos(updatedTodos);
+  };
+
+  const deleteTodo = (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
+  const changeStatus = (id, newStatus) => {
+    const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, status: newStatus } : todo));
+    setTodos(updatedTodos);
+  };
+
+  const filterTodos = () => {
+    switch (filter) {
+      case 'completed':
+        setFilteredTodos(todos.filter((todo) => todo.status === 'Completed'));
+        break;
+      case 'not completed':
+        setFilteredTodos(todos.filter((todo) => todo.status === 'Not Completed'));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+
