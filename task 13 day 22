@@ -1,0 +1,131 @@
+"BASH"
+
+npx create-react-app landing-page-app
+cd landing-page-app
+
+
+"BASH"
+
+npm install bootstrap
+
+
+"JSX"
+
+// Header.js
+import React from 'react';
+
+const Header = () => {
+  return (
+    <header className="bg-primary text-white text-center">
+      <div className="container">
+        <h1 className="display-4">Your Landing Page</h1>
+        <p className="lead">A great place to showcase your product or service.</p>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+
+
+"JSX"
+
+// Features.js
+import React from 'react';
+
+const Features = () => {
+  return (
+    <section className="py-5">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-4 mb-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h4 className="card-title">Feature 1</h4>
+                <p className="card-text">Description of feature 1.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 mb-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h4 className="card-title">Feature 2</h4>
+                <p className="card-text">Description of feature 2.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 mb-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h4 className="card-title">Feature 3</h4>
+                <p className="card-text">Description of feature 3.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Features;
+
+
+"JSX"
+
+// CallToAction.js
+import React from 'react';
+
+const CallToAction = () => {
+  return (
+    <section className="bg-dark text-white">
+      <div className="container text-center">
+        <h2 className="mb-4">Take action now!</h2>
+        <a href="#" className="btn btn-light btn-xl">Get Started</a>
+      </div>
+    </section>
+  );
+};
+
+export default CallToAction;
+
+
+"JSX"
+
+// App.js
+import React from 'react';
+import Header from './components/Header';
+import Features from './components/Features';
+import CallToAction from './components/CallToAction';
+import './App.css';
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Features />
+      <CallToAction />
+    </div>
+  );
+}
+
+export default App;
+
+
+"CSS"
+
+/* App.css */
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+
+"BASH"
+
+npm start
