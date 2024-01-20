@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form and Table Example</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    #formContainer {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    #dataTable {
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #dataTable th, #dataTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #dataTable th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div id="formContainer">
+  <form id="userForm">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" class="form-control" id="address" required>
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode:</label>
+      <input type="text" class="form-control" id="pincode" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select class="form-control" id="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="food">Choice of Food (select at least 2):</label>
+      <select multiple class="form-control" id="food" required>
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="pasta">Pasta</option>
+        <option value="salad">Salad</option>
+        <option value="sandwich">Sandwich</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="text" class="form-control" id="state" required>
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" class="form-control" id="country" required>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+  </form>
+</div>
+
+<table id="dataTable"></table>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+"""script.js"""
+
+document.addEventListener('DOMContentLoaded', function () {
+    createTable(); // Initial table creation
+  
+    // Add event listener for form submission
+    document.getElementById('userForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitForm();
+    });
+  });
+  
+  function submitForm() {
+    // Get form values
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const address = document.getElementById('address').value;
+    const pincode = document.getElementById('pincode').value;
+    const gender = document.getElementById('gender').value;
+    const food = Array.from(document.getElementById('food').selectedOptions).map(option => option.value).join(', ');
+    const state = document.getElementById('state').value;
+    const country = document.getElementById('country').value;
+  
+    // Append values to the table
+    const table = document.getElementById('dataTable');
+    const newRow = table.insertRow(-1);
+    const cells = [firstName, lastName, address, pincode, gender, food, state, country];
+  
+    for (let i = 0; i < cells.length; i++) {
+      const cell = newRow.insertCell(i);
+      cell.textContent = cells[i];
+    }
+  
+    clearForm();
+  }
+  
+  function createTable() {
+    const table = document.getElementById('dataTable');
+    const headerRow = table.insertRow(0);
+    const headers = ['First Name', 'Last Name', 'Address', 'Pincode', 'Gender', 'Food', 'State', 'Country'];
+  
+    for (let i = 0; i < headers.length; i++) {
+      const th = document.createElement('th');
+      th.textContent = headers[i];
+      headerRow.appendChild(th);
+    }
+  }
+  
+  function clearForm() {
+    document.getElementById('userForm').reset();
+  }
+  
